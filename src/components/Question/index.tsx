@@ -1,10 +1,11 @@
-export const Question = () => {
+type TQuestion = {
+  question: string;
+};
+
+export const Question = ({ question }: TQuestion) => {
   return (
     <div className="m-auto max-w-[31.5rem] mb-12 mt-5">
-      <p className="text-blue-700 text-2xl">
-        Which of the following is the term for surgical complications resulting
-        from surgical sponges left inside the patient's body?
-      </p>
+      <p className="text-blue-700 text-2xl">{question}</p>
     </div>
   );
 };
