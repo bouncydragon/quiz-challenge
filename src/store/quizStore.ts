@@ -30,7 +30,7 @@ type Question = {
   answers: Answer;
   multiple_correct_answers: string;
   correct_answers: CorrectAnswers;
-  correct_answer: string | null;
+  correct_answer: string | string[];
   explanation: string | null;
   tip: string | null;
   tags: Tag[];
@@ -41,15 +41,18 @@ type Question = {
 type QuizState = {
   questions: Question[];
   answers: { [key: number]: string[] };
+  totalCorrectAnswers: number;
   setQuestions: (questions: Question[]) => void;
   setAnswer: (questionIndex: number, answer: string) => void;
+  calculateTotalCorrectAnswers: () => void;
 };
 
-export const useQuizStore = create<QuizState>((set) => ({
+export const useQuizStore = create<QuizState>((set, get) => ({
   questions: [],
   answers: {},
-  setQuestions: (questions) => set({ questions }),
-  setAnswer: (questionIndex, answer) =>
+  totalCorrectAnswers: 0,
+  setQuestions: (questions: Question[]) => set({ questions }),
+  setAnswer: (questionIndex: number, answer: string) =>
     set((state) => {
       const currentAnswers = state.answers[questionIndex] || [];
       const question = state.questions[questionIndex];
@@ -66,6 +69,26 @@ export const useQuizStore = create<QuizState>((set) => ({
         answers: { ...state.answers, [questionIndex]: newAnswers },
       };
     }),
+  calculateTotalCorrectAnswers: () => {
+    const { questions, answers } = get();
+    let totalCorrect = 0;
+
+    questions.forEach((question, index) => {
+      const correctAnswers = Object.entries(question.correct_answer)
+        .filter(([, value]) => value === 'true')
+        .map(([key]) => key.replace('_correct', ''));
+
+      const userAnswers = answers[index] || [];
+
+      if (
+        correctAnswers.length === userAnswers.length &&
+        correctAnswers.every((answer) => userAnswers.includes(answer))
+      ) {
+        totalCorrect += 1;
+      }
+    });
+    set({ totalCorrectAnswers: totalCorrect });
+  },
 }));
 
 if (process.env.NODE_ENV === 'development') {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuizStore } from '../store/quizStore';
 import useData from '../hooks/useData';
 import { OptionsBox } from '../components/OptionsBox';
@@ -7,18 +8,27 @@ import { Question } from '../components/Question';
 import { removeNullAndFalseEntities } from '../helpers/removeNullAndFalseEntities';
 
 const QuestionsPage = () => {
-  const { setQuestions, questions, setAnswer, answers } = useQuizStore();
+  const {
+    setQuestions,
+    questions,
+    setAnswer,
+    answers,
+    calculateTotalCorrectAnswers,
+  } = useQuizStore();
   const { data, error, isLoading } = useData('', {
     limit: 2,
     category: 'Linux',
     difficulty: 'easy',
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const navigate = useNavigate();
+
   const isLastQuestion = currentQuestion + 1 === questions?.length;
 
   useEffect(() => {
     if (data && Array.isArray(data)) {
       const cleanedAnswers = data.map(removeNullAndFalseEntities);
+      console.log('FINAL DATA: ', cleanedAnswers);
       setQuestions(cleanedAnswers);
     }
   }, [data, setQuestions]);
@@ -38,12 +48,15 @@ const QuestionsPage = () => {
   const handleNext = () => {
     if (answers[currentQuestion]?.length > 0 && !isLastQuestion) {
       setCurrentQuestion((prev) => prev + 1);
+    } else {
+      calculateTotalCorrectAnswers();
+      navigate('/success');
     }
   };
 
   const renderChoices = () => {
     if (questions.length > 0) {
-      return Object.entries(questions[currentQuestion].answers).map(
+      return Object.entries(questions[currentQuestion]?.answers).map(
         ([key, value], indx) => (
           <OptionsBox
             key={indx}
