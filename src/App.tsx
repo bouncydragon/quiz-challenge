@@ -4,6 +4,7 @@ import useData from './hooks/useData';
 import { OptionsBox } from './components/OptionsBox';
 import { Heading } from './components/Heading';
 import './App.css';
+import { NextButton } from './components/Button';
 
 const App = () => {
   const { setQuestions, questions } = useQuizStore();
@@ -31,6 +32,7 @@ const App = () => {
     <>
       <Heading />
       <OptionsBox option="Gauze grievance disorder" />
+      <NextButton />
       {/* {questions.map((q) => (
         <div>{q.question}</div>
       ))} */}
