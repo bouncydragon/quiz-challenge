@@ -13,8 +13,8 @@ export const mockData = [
     },
     multiple_correct_answers: 'false',
     correct_answer: 'answer_c_correct',
-    },
-    {
+  },
+  {
     question: 'What are the new features of ES6?',
     correct_answers: {
       answer_a_correct: 'true',

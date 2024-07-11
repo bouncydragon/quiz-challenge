@@ -3,7 +3,7 @@ import { LandingPage } from '.';
 import { renderWithRouter } from '../../test/renderWithRouter';
 
 describe('LandingPage', () => {
-  it('renders correctly', () => {
+  it('should render correctly', () => {
     const { getByText, getByAltText } = renderWithRouter(<LandingPage />);
     expect(getByText('QUIZZLER')).toBeInTheDocument();
     expect(getByText('BY:')).toBeInTheDocument();

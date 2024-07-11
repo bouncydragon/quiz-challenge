@@ -33,8 +33,8 @@ describe('useQuizStore', () => {
 
     expect(result.current.totalCorrectAnswers).toBe(1);
   });
-    
-    it('should change add more answers and remove existing answer', () => {
+
+  it('should change add more answers and remove existing answer', () => {
     const { result } = renderHook(() => useQuizStore());
 
     act(() => {

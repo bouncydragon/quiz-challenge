@@ -3,7 +3,7 @@ import { SuccessPage } from '.';
 import { renderWithRouter } from '../../test/renderWithRouter';
 
 describe('SuccessPage', () => {
-  it('should render correctly with given text', () => {
+  it('should render correctly', () => {
     const { getByText } = renderWithRouter(<SuccessPage />);
 
     expect(getByText('BRAVO!')).toBeInTheDocument();

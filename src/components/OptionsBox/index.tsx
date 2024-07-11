@@ -13,7 +13,6 @@ export const OptionsBox: React.FC<BoxProps> = ({
 }): JSX.Element => {
   const handleClick = () => {
     onSelect(optionLetter);
-    console.log(optionLetter);
   };
 
   return (
