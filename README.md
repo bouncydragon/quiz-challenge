@@ -1,42 +1,65 @@
-# Frontend Developer Quiz Test
+# Quiz Challenge
 
-Welcome, developer! 🚀
+Cloned from [Forgewerks](https://github.com/forgewerks/quiz-challenge)
 
-In this test, we challenge you to showcase your skills by creating a quiz app in React using TailwindCSS and Typescript. We provide you with a prototype link in Figma for reference.
+### How to run the project
 
-## Deadline
+1. Clone the project
+```shell
+  git clone <SSH || HTTP || DOWNLOAD DIRECTLY>
+```
 
-You have 48 hours after you receive this test to complete it.
+2. Change directory to the folder
+```shell
+  cd quiz-challenge
+```
 
-### Figma File
+3. Install dependencies
+```shell
+  # pnpm users
+  pnpm install
+    
+  # yarn users
+  yarn install
+    
+  # npm users
+  npm install
+```
 
-Visit the link for the designs **[here.](https://www.figma.com/design/uNM9KUVj7PSZWXYO0JPzhS/Quizz?node-id=0-62&t=5dzSoTfK3dQHf8ep-1)**
-**Password:** BreakingTheMold!
+4. After successful installation, run the project
+```shell
+  # pnpm users
+  pnpm run dev
+    
+  # yarn users
+  yarn run dev
+    
+  # npm users
+  npm run dev
+```
 
-## Instructions
+5. Navigate to [localhost:3000](http://localhost:3000/) to see the project.
 
-1. Follow the designs in the prototype to build the quiz project.
-2. Be creative and solve any questions that come up in your preferred way.
-3. Use the provided Quiz API to get the questions and answers: [Quiz API](https://quizapi.io/predefined-quizzes/javascript-essentials-everybody-should-know)
-4. Create the flow using your preferred state management tool.
-5. Showcase your best skills and practices to impress us!
-6. Have fun!
+----
 
-## Getting Started
+> Although I am new to Zustand and SWR, I have utilized them to demonstrate my ability to quickly adapt to new technologies.
+### Tech stack used
+- Zustand (State management)
+- Axios
+- SWR
+- React & Typescript
+- Tailwind
 
-1. Clone this repository to your local machine.
-2. Install the necessary dependencies by running `npm install`.
-3. Start the development server using `npm start`.
-4. Begin building the quiz app following the instructions provided.
+----
+> I added small amount of test cases
+### How to run the tests
 
-## Submission
+1. Run test with coverage and access
+```shell
+  npx vitest --ui --coverage.enabled=true
+```
 
-1. Once you have completed the quiz app, push your code to a Git repository.
-2. Send us the link to your repository or a zip file of your project.
-3. Include any additional notes or explanations in your submission.
+2. Navigate to [localhost:51204/__vitest__/#/](http://localhost:51204/__vitest__/#/) to see the test and its coverage.
 
-## Questions
-
-If you have any questions or need clarification, feel free to reach out. Have fun building the quiz app and show us what you've got! 💻🎉
-
-Happy coding and good luck! 🌟
+## Comments and Suggestion
+> I am aware that the application has potential for further improvement, and I have numerous ideas for enhancements. However, this represents my final output. I would greatly appreciate your thoughts on my work. Your feedback is highly valued.
