@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heading, OptionsBox, Question, Spinner } from '../components';
-import { useData } from '../hooks';
-import { removeNullAndFalseEntities } from '../helpers';
-import { useQuizStore } from '../store/quizStore';
+import { Heading, OptionsBox, Question, Spinner } from '../../components';
+import { useData } from '../../hooks';
+import { removeNullAndFalseEntities } from '../../helpers';
+import { useQuizStore } from '../../store/quizStore';
 
 export const QuestionsPage: React.FC = (): JSX.Element => {
   const {

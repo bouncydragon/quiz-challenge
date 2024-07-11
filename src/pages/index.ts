@@ -1,3 +1,3 @@
-export { SuccessPage } from './success-page';
-export { QuestionsPage } from './questions-page';
-export { LandingPage } from './landing-page';
+export { SuccessPage } from './SuccessPage';
+export { QuestionsPage } from './QuestionsPage';
+export { LandingPage } from './LandingPage';

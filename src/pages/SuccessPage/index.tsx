@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useQuizStore } from '../store/quizStore';
+import { useQuizStore } from '../../store/quizStore';
 
 export const SuccessPage: React.FC = (): JSX.Element => {
   const { totalCorrectAnswers, questions } = useQuizStore();
