@@ -1,15 +1,18 @@
-import { useState } from 'react';
-
 type BoxProps = {
   option: string;
   optionLetter: string;
+  onSelect: (option: string) => void;
+  isSelected: boolean;
 };
 
-export const OptionsBox: React.FC<BoxProps> = ({ option, optionLetter }) => {
-  const [isSelected, setIsSelected] = useState(false);
-
+export const OptionsBox: React.FC<BoxProps> = ({
+  option,
+  optionLetter,
+  onSelect,
+  isSelected,
+}) => {
   const handleClick = () => {
-    setIsSelected(!isSelected);
+    onSelect(optionLetter);
     console.log(optionLetter);
   };
 

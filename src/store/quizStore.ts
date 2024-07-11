@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 
 type Answer = {
   answer_a: string | null;
@@ -39,10 +40,34 @@ type Question = {
 
 type QuizState = {
   questions: Question[];
+  answers: { [key: number]: string[] };
   setQuestions: (questions: Question[]) => void;
+  setAnswer: (questionIndex: number, answer: string) => void;
 };
 
 export const useQuizStore = create<QuizState>((set) => ({
   questions: [],
+  answers: {},
   setQuestions: (questions) => set({ questions }),
+  setAnswer: (questionIndex, answer) =>
+    set((state) => {
+      const currentAnswers = state.answers[questionIndex] || [];
+      const question = state.questions[questionIndex];
+      let newAnswers;
+
+      if (question.multiple_correct_answers === 'false') {
+        newAnswers = [answer];
+      } else {
+        newAnswers = currentAnswers.includes(answer)
+          ? currentAnswers.filter((a) => a !== answer)
+          : [...currentAnswers, answer];
+      }
+      return {
+        answers: { ...state.answers, [questionIndex]: newAnswers },
+      };
+    }),
 }));
+
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('Store', useQuizStore);
+}

@@ -8,13 +8,14 @@ import { Question } from './components/Question';
 import { removeNullAndFalseEntities } from './helpers/removeNullAndFalseEntities';
 
 const App = () => {
-  const { setQuestions, questions } = useQuizStore();
+  const { setQuestions, questions, setAnswer, answers } = useQuizStore();
   const { data, error, isLoading } = useData('', {
     limit: 2,
     category: 'Linux',
     difficulty: 'easy',
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const isLastQuestion = currentQuestion + 1 === questions?.length;
 
   useEffect(() => {
     if (data && Array.isArray(data)) {
@@ -31,10 +32,30 @@ const App = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleSelect = (option: string) => {
+    setAnswer(currentQuestion, option);
+  };
+
+  const handleNext = () => {
+    if (
+      answers[currentQuestion]?.length > 0 &&
+      !isLastQuestion
+    ) {
+      setCurrentQuestion((prev) => prev + 1);
+    }
+  };
+
   const renderChoices = () => {
     if (questions.length > 0) {
       return Object.entries(questions[currentQuestion].answers).map(
-        ([key, value]) => <OptionsBox option={value || ''} optionLetter={key} />
+        ([key, value]) => (
+          <OptionsBox
+            option={value || ''}
+            optionLetter={key}
+            onSelect={handleSelect}
+            isSelected={answers[currentQuestion]?.includes(key || '')}
+          />
+        )
       );
     }
   };
@@ -53,8 +74,11 @@ const App = () => {
         <Heading currentCount={currentQuestion} totalNo={questions.length} />
         <Question question={questions[currentQuestion]?.question} />
         <div className="space-y-4 mb-10">{renderChoices()}</div>
-        <button className="capitalize bg-gray-200 h-[4rem] w-[8rem] text-[1.5rem] text-gray-400">
-          Next
+        <button
+          className="capitalize bg-gray-200 h-[4rem] w-[8rem] text-[1.5rem] text-gray-400"
+          onClick={handleNext}
+        >
+          { isLastQuestion ? "Submit" : "Next"}
         </button>
       </div>
     </div>
