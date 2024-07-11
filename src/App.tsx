@@ -33,13 +33,8 @@ const App = () => {
 
   const renderChoices = () => {
     if (questions.length > 0) {
-      return Object.values(questions[currentQuestion].answers).map(
-        (op, indx) => (
-          <OptionsBox
-            option={op || ''}
-            optionLetter={String.fromCharCode(65 + indx)}
-          />
-        )
+      return Object.entries(questions[currentQuestion].answers).map(
+        ([key, value]) => <OptionsBox option={value || ''} optionLetter={key} />
       );
     }
   };
