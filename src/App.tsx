@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useQuizStore } from './store/quizStore';
 import useData from './hooks/useData';
 import './App.css';
+import { OptionsBox } from './components/OptionsBox';
 
 const App = () => {
   const { setQuestions, questions } = useQuizStore();
@@ -27,9 +28,10 @@ const App = () => {
 
   return (
     <>
-      {questions.map((q) => (
+      <OptionsBox option="Gauze grievance disorder" />
+      {/* {questions.map((q) => (
         <div>{q.question}</div>
-      ))}
+      ))} */}
     </>
   );
 };
