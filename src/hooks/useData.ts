@@ -1,13 +1,13 @@
 import useSWRImmutable from 'swr';
 import { fetcher } from '../lib/axios';
 
-interface UseDataResponse<T> {
+type UseDataResponse<T> = {
   data: T | undefined;
   error: any;
   isLoading: boolean;
-}
+};
 
-const useData = <T>(
+export const useData = <T>(
   url: string,
   params: Record<string, any> = {}
 ): UseDataResponse<T> => {
@@ -25,5 +25,3 @@ const useData = <T>(
     isLoading,
   };
 };
-
-export default useData;

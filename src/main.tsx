@@ -4,9 +4,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import QuestionsPage from './pages/questions-page.tsx';
 import SuccessPage from './pages/success-page.tsx';
-import './index.css';
+import './index.scss';
+import LandingPage from './pages/landing-page.tsx';
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <LandingPage />,
+  },
   {
     path: '/questions',
     element: <QuestionsPage />,

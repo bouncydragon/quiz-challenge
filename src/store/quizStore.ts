@@ -74,7 +74,7 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     let totalCorrect = 0;
 
     questions.forEach((question, index) => {
-      const correctAnswers = Object.entries(question.correct_answer)
+      const correctAnswers = Object.entries(question.correct_answers)
         .filter(([, value]) => value === 'true')
         .map(([key]) => key.replace('_correct', ''));
 

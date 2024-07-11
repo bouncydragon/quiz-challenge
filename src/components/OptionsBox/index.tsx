@@ -10,7 +10,7 @@ export const OptionsBox: React.FC<BoxProps> = ({
   optionLetter,
   onSelect,
   isSelected,
-}) => {
+}): JSX.Element => {
   const handleClick = () => {
     onSelect(optionLetter);
     console.log(optionLetter);

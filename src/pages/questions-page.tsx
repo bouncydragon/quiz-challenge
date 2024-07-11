@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Heading, OptionsBox, Question, Spinner } from '../components';
+import { useData } from '../hooks';
+import { removeNullAndFalseEntities } from '../helpers';
 import { useQuizStore } from '../store/quizStore';
-import useData from '../hooks/useData';
-import { OptionsBox } from '../components/OptionsBox';
-import { Heading } from '../components/Heading';
-import { Question } from '../components/Question';
-import { removeNullAndFalseEntities } from '../helpers/removeNullAndFalseEntities';
 
-const QuestionsPage = () => {
+const QuestionsPage: React.FC = (): JSX.Element => {
   const {
     setQuestions,
     questions,
@@ -28,14 +26,9 @@ const QuestionsPage = () => {
   useEffect(() => {
     if (data && Array.isArray(data)) {
       const cleanedAnswers = data.map(removeNullAndFalseEntities);
-      console.log('FINAL DATA: ', cleanedAnswers);
       setQuestions(cleanedAnswers);
     }
   }, [data, setQuestions]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -71,7 +64,7 @@ const QuestionsPage = () => {
   };
 
   return (
-    <>
+    <div id="question-main">
       <header className="flex justify-end px-10 py-4">
         <img
           src="./src/assets/forge-logo.png"
@@ -80,21 +73,30 @@ const QuestionsPage = () => {
           height={100}
         />
       </header>
-      <div className="max-w-[67.5rem] p-2 m-auto text-center">
+      <div className="flex items-center justify-center h-[calc(100vh-63.40px)] max-w-[67.5rem] p-2 m-auto text-center">
         <div>
-          <Heading currentCount={currentQuestion} totalNo={questions.length} />
-          <Question question={questions[currentQuestion]?.question} />
-          <div className="space-y-4 mb-10">{renderChoices()}</div>
-          <button
-            className="disabled:bg-gray-200 disabled:text-gray-300 disabled:cursor-not-allowed text-white bg-blue-700 capitalize h-[4rem] w-[8rem] text-[1.5rem] "
-            onClick={handleNext}
-            disabled={answers[currentQuestion] === undefined}
-          >
-            {isLastQuestion ? 'Submit' : 'Next'}
-          </button>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <div>
+              <Heading
+                currentCount={currentQuestion}
+                totalNo={questions.length}
+              />
+              <Question question={questions[currentQuestion]?.question} />
+              <div className="mb-10 space-y-4">{renderChoices()}</div>
+              <button
+                className="h-[4rem] w-[8rem] text-[1.5rem] text-white bg-blue-700 capitalize disabled:bg-gray-200 disabled:text-gray-300 disabled:cursor-not-allowed"
+                onClick={handleNext}
+                disabled={answers[currentQuestion] === undefined}
+              >
+                {isLastQuestion ? 'Submit' : 'Next'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
