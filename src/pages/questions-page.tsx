@@ -14,7 +14,7 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
     calculateTotalCorrectAnswers,
   } = useQuizStore();
   const { data, error, isLoading } = useData('', {
-    limit: 2,
+    limit: 10,
     category: 'Code',
     difficulty: 'easy',
   });
@@ -64,7 +64,7 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div id="question-main">
+    <div id="question-main" className="bg-gray-600 dark:bg-darkGray-200">
       <header className="flex justify-end px-10 py-4">
         <img
           src="./src/assets/forge-logo.png"
@@ -73,28 +73,33 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
           height={100}
         />
       </header>
-      <div className="flex items-center justify-center min-h-[calc(100vh-63.40px)] max-w-[67.5rem] pb-10 m-auto text-center">
-        <div>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <div>
+      <div className="flex items-center flex-col justify-center min-h-[calc(100vh-63.40px)] max-w-[67.5rem] pb-10 m-auto z-10">
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className="text-center z-10">
               <Heading
                 currentCount={currentQuestion}
                 totalNo={questions.length}
               />
               <Question question={questions[currentQuestion]?.question} />
-              <div className="mb-10 space-y-4">{renderChoices()}</div>
-              <button
-                className="h-[4rem] w-[8rem] text-[1.5rem] text-white bg-blue-700 capitalize disabled:bg-gray-200 disabled:text-gray-300 disabled:cursor-not-allowed"
-                onClick={handleNext}
-                disabled={answers[currentQuestion] === undefined}
-              >
-                {isLastQuestion ? 'Submit' : 'Next'}
-              </button>
             </div>
-          )}
-        </div>
+            <div className="mb-10 space-y-4 w-full z-10">{renderChoices()}</div>
+            <button
+              className="
+                h-[4rem] w-[8rem] text-[1.5rem] text-gray-400 bg-blue-700 
+                dark:bg-gray-500 dark:text-darkGray-200 disabled:dark:text-gray-600 
+                disabled:bg-warmGray-400 capitalize disabled:bg-gray-200 
+                disabled:text-gray-300 disabled:cursor-not-allowed z-10
+              "
+              onClick={handleNext}
+              disabled={answers[currentQuestion] === undefined}
+            >
+              {isLastQuestion ? 'Submit' : 'Next'}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
