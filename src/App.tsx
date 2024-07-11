@@ -30,15 +30,31 @@ const App = () => {
   }
 
   return (
-    <>
-      <Heading />
-      <Question />
-      <OptionsBox option="Gauze grievance disorder" />
-      <NextButton />
+    <div className="">
+      <header className="flex justify-end">
+        <img
+          src="./src/assets/forge-logo.png"
+          alt="forge logo"
+          width={100}
+          height={100}
+        />
+      </header>
+      <div>
+        <Heading />
+        <Question />
+        <div className="space-y-4 mb-10">
+          <OptionsBox option="Gauze grievance disorder" />
+          <OptionsBox option="Gauze grievance disorder" />
+          <OptionsBox option="Gauze grievance disorder" />
+          <OptionsBox option="Gauze grievance disorder" />
+        </div>
+        <NextButton />
+      </div>
+
       {/* {questions.map((q) => (
         <div>{q.question}</div>
       ))} */}
-    </>
+    </div>
   );
 };
 
