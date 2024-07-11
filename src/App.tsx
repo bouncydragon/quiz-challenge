@@ -5,6 +5,7 @@ import { OptionsBox } from './components/OptionsBox';
 import { Heading } from './components/Heading';
 import './App.css';
 import { NextButton } from './components/Button';
+import { Question } from './components/Question';
 
 const App = () => {
   const { setQuestions, questions } = useQuizStore();
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <>
       <Heading />
+      <Question />
       <OptionsBox option="Gauze grievance disorder" />
       <NextButton />
       {/* {questions.map((q) => (
