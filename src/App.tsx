@@ -1,21 +1,37 @@
-import './App.css';
+import { useEffect } from 'react';
+import { useQuizStore } from './store/quizStore';
 import useData from './hooks/useData';
+import './App.css';
 
-function App() {
+const App = () => {
+  const { setQuestions, questions } = useQuizStore();
   const { data, error, isLoading } = useData('', {
     limit: 10,
     category: 'Linux',
     difficulty: 'easy',
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error encountered</p>;
+  useEffect(() => {
+    if (data && Array.isArray(data)) {
+      setQuestions(data);
+    }
+  }, [data, setQuestions]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Happy coding and good luck! 🌟
-    </h1>
+    <>
+      {questions.map((q) => (
+        <div>{q.question}</div>
+      ))}
+    </>
   );
-}
+};
 
 export default App;
