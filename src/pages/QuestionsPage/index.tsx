@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Heading, OptionsBox, Question, Spinner } from '../../components';
 import { useData } from '../../hooks';
 import { removeNullAndFalseEntities } from '../../helpers';
 import { useQuizStore } from '../../store/quizStore';
+import forgeLogo from '../../assets/forge-logo.png';
 
 export const QuestionsPage: React.FC = (): JSX.Element => {
   const {
@@ -64,14 +65,11 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div id="question-main" className="bg-gray-600 dark:bg-darkGray-200">
+    <div id="question-main" className="bg-stoneGray-600 dark:bg-darkGray-200">
       <header className="flex justify-end px-10 py-4">
-        <img
-          src="./src/assets/forge-logo.png"
-          alt="forge logo"
-          width={100}
-          height={100}
-        />
+        <Link reloadDocument to="/" className="z-10">
+          <img src={forgeLogo} alt="forge logo" width={100} height={100} />
+        </Link>
       </header>
       <div className="flex items-center flex-col justify-center min-h-[calc(100vh-63.40px)] max-w-[67.5rem] pb-10 m-auto z-10">
         {isLoading ? (
@@ -88,9 +86,9 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
             <div className="mb-10 space-y-4 w-full z-10">{renderChoices()}</div>
             <button
               className="
-                h-[4rem] w-[8rem] text-[1.5rem] text-gray-400 bg-blue-700 
-                dark:bg-gray-500 dark:text-darkGray-200 disabled:dark:text-gray-600 
-                disabled:bg-warmGray-400 capitalize disabled:bg-gray-200 
+                h-[4rem] w-[8rem] text-[1.5rem] text-stoneGray-400 bg-oceanBlue-700 
+                dark:bg-stoneGray-500 dark:text-darkGray-200 disabled:dark:text-stoneGray-600 
+                disabled:bg-warmstoneGray-400 capitalize disabled:bg-gray-200 
                 disabled:text-gray-300 disabled:cursor-not-allowed z-10
               "
               onClick={handleNext}

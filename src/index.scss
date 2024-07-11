@@ -53,7 +53,8 @@ span {
   }
 }
 
-#success-main {
+#success-main,
+#error-main {
   &.wrapper {
     background: #4242e0;
     &::before {

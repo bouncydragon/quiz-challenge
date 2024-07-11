@@ -22,7 +22,7 @@ describe('OptionsBox Component', () => {
   it('should apply the selected styles when isSelected is true', () => {
     render(<OptionsBox {...defaultProps} isSelected={true} />);
     const label = screen.getByText('Option 1').closest('label');
-    expect(label).toHaveClass('bg-blue-700 dark:bg-gray-400');
+    expect(label).toHaveClass('bg-oceanBlue-700 dark:bg-stoneGray-400');
   });
 
   it('should call onSelect with the correct option letter when clicked', () => {

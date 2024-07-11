@@ -2,10 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { LandingPage, QuestionsPage, SuccessPage } from './pages';
+import {
+  ErrorPage,
+  LandingPage,
+  NotFound,
+  QuestionsPage,
+  SuccessPage,
+} from './pages';
 import './index.scss';
 
 const router = createBrowserRouter([
+  {
+    path: '*',
+    element: <NotFound />,
+  },
   {
     path: '/',
     element: <LandingPage />,
@@ -13,10 +23,12 @@ const router = createBrowserRouter([
   {
     path: '/questions',
     element: <QuestionsPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: '/success',
     element: <SuccessPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
