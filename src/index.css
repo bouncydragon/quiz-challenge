@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   background-color: #c8d2da;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 :root::before {
   content: ' ';
@@ -20,3 +20,9 @@
   height: 100%;
   z-index: -1;
 }
+
+/* #root {
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100vh;
+} */

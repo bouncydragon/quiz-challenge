@@ -19,7 +19,7 @@ export const OptionsBox: React.FC<BoxProps> = ({
   return (
     <div className="group/box max-w-[35.938rem] m-auto">
       <label
-        className={`cursor-pointer flex items-center ${isSelected ? 'bg-blue-800' : 'bg-gray-200'} border border-blue-700 p-7 group-hover/box:bg-blue-800`}
+        className={`cursor-pointer flex items-center ${isSelected ? 'bg-blue-700' : 'bg-gray-200'} border border-blue-700 p-7 group-hover/box:bg-blue-700`}
       >
         <input type="checkbox" className="hidden" onClick={handleClick} />
         <div

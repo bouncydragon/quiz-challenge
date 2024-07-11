@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useQuizStore } from './store/quizStore';
-import useData from './hooks/useData';
-import { OptionsBox } from './components/OptionsBox';
-import { Heading } from './components/Heading';
-import './App.css';
-import { Question } from './components/Question';
-import { removeNullAndFalseEntities } from './helpers/removeNullAndFalseEntities';
+import { useQuizStore } from '../store/quizStore';
+import useData from '../hooks/useData';
+import { OptionsBox } from '../components/OptionsBox';
+import { Heading } from '../components/Heading';
+import { Question } from '../components/Question';
+import { removeNullAndFalseEntities } from '../helpers/removeNullAndFalseEntities';
 
-const App = () => {
+const QuestionsPage = () => {
   const { setQuestions, questions, setAnswer, answers } = useQuizStore();
   const { data, error, isLoading } = useData('', {
     limit: 2,
@@ -37,10 +36,7 @@ const App = () => {
   };
 
   const handleNext = () => {
-    if (
-      answers[currentQuestion]?.length > 0 &&
-      !isLastQuestion
-    ) {
+    if (answers[currentQuestion]?.length > 0 && !isLastQuestion) {
       setCurrentQuestion((prev) => prev + 1);
     }
   };
@@ -48,8 +44,9 @@ const App = () => {
   const renderChoices = () => {
     if (questions.length > 0) {
       return Object.entries(questions[currentQuestion].answers).map(
-        ([key, value]) => (
+        ([key, value], indx) => (
           <OptionsBox
+            key={indx}
             option={value || ''}
             optionLetter={key}
             onSelect={handleSelect}
@@ -61,8 +58,8 @@ const App = () => {
   };
 
   return (
-    <div className="">
-      <header className="flex justify-end">
+    <>
+      <header className="flex justify-end px-10 py-4">
         <img
           src="./src/assets/forge-logo.png"
           alt="forge logo"
@@ -70,19 +67,22 @@ const App = () => {
           height={100}
         />
       </header>
-      <div>
-        <Heading currentCount={currentQuestion} totalNo={questions.length} />
-        <Question question={questions[currentQuestion]?.question} />
-        <div className="space-y-4 mb-10">{renderChoices()}</div>
-        <button
-          className="capitalize bg-gray-200 h-[4rem] w-[8rem] text-[1.5rem] text-gray-400"
-          onClick={handleNext}
-        >
-          { isLastQuestion ? "Submit" : "Next"}
-        </button>
+      <div className="max-w-[67.5rem] p-2 m-auto text-center">
+        <div>
+          <Heading currentCount={currentQuestion} totalNo={questions.length} />
+          <Question question={questions[currentQuestion]?.question} />
+          <div className="space-y-4 mb-10">{renderChoices()}</div>
+          <button
+            className="disabled:bg-gray-200 disabled:text-gray-300 disabled:cursor-not-allowed text-white bg-blue-700 capitalize h-[4rem] w-[8rem] text-[1.5rem] "
+            onClick={handleNext}
+            disabled={answers[currentQuestion] === undefined}
+          >
+            {isLastQuestion ? 'Submit' : 'Next'}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default App;
+export default QuestionsPage;
