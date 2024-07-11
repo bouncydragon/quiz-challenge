@@ -1,6 +1,6 @@
 import { useQuizStore } from '../store/quizStore';
 
-const SuccessPage: React.FC = (): JSX.Element => {
+export const SuccessPage: React.FC = (): JSX.Element => {
   const { totalCorrectAnswers, questions } = useQuizStore();
   return (
     <div id="success-main" className="wrapper">
@@ -28,5 +28,3 @@ const SuccessPage: React.FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default SuccessPage;

@@ -17,21 +17,23 @@ export const OptionsBox: React.FC<BoxProps> = ({
   };
 
   return (
-    <div className="group/box max-w-[35.938rem] m-auto">
-      <label
-        className={`cursor-pointer flex items-center ${isSelected ? 'bg-blue-700' : 'bg-gray-200'} border border-blue-700 p-7 group-hover/box:bg-blue-700`}
-      >
-        <input type="checkbox" className="hidden" onClick={handleClick} />
+    <div className="group/box max-w-[38rem] m-auto flex">
+      <label className="w-full">
         <div
-          className={`bg-blue-700 text-xl text-white rounded-full w-9 h-9 inline-flex items-center justify-center group-hover/box:border-white group-hover/box:border-2 ${isSelected && 'border-2 border-white'}`}
+          className={`cursor-pointer flex items-center ${isSelected ? 'bg-blue-700' : 'bg-gray-200'} border border-blue-700 p-7 group-hover/box:bg-blue-700`}
         >
-          {optionLetter.charAt(optionLetter.length - 1).toUpperCase()}
+          <input type="checkbox" className="hidden" onClick={handleClick} />
+          <div
+            className={`bg-blue-700 text-xl text-white rounded-full w-9 h-9 inline-flex items-center justify-center group-hover/box:border-white group-hover/box:border-2 ${isSelected && 'border-2 border-white'}`}
+          >
+            {optionLetter.charAt(optionLetter.length - 1).toUpperCase()}
+          </div>
+          <p
+            className={`group-hover/box:text-white ${isSelected ? 'text-white' : 'text-blue-700'} text-lg ml-8`}
+          >
+            {option}
+          </p>
         </div>
-        <p
-          className={`group-hover/box:text-white ${isSelected ? 'text-white' : 'text-blue-700'} text-lg ml-8`}
-        >
-          {option}
-        </p>
       </label>
     </div>
   );

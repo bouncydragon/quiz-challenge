@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import QuestionsPage from './pages/questions-page.tsx';
-import SuccessPage from './pages/success-page.tsx';
+import { LandingPage, QuestionsPage, SuccessPage } from './pages';
 import './index.scss';
-import LandingPage from './pages/landing-page.tsx';
 
 const router = createBrowserRouter([
   {

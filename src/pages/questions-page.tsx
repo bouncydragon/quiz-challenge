@@ -5,7 +5,7 @@ import { useData } from '../hooks';
 import { removeNullAndFalseEntities } from '../helpers';
 import { useQuizStore } from '../store/quizStore';
 
-const QuestionsPage: React.FC = (): JSX.Element => {
+export const QuestionsPage: React.FC = (): JSX.Element => {
   const {
     setQuestions,
     questions,
@@ -15,7 +15,7 @@ const QuestionsPage: React.FC = (): JSX.Element => {
   } = useQuizStore();
   const { data, error, isLoading } = useData('', {
     limit: 2,
-    category: 'Linux',
+    category: 'Code',
     difficulty: 'easy',
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -73,7 +73,7 @@ const QuestionsPage: React.FC = (): JSX.Element => {
           height={100}
         />
       </header>
-      <div className="flex items-center justify-center h-[calc(100vh-63.40px)] max-w-[67.5rem] p-2 m-auto text-center">
+      <div className="flex items-center justify-center min-h-[calc(100vh-63.40px)] max-w-[67.5rem] pb-10 m-auto text-center">
         <div>
           {isLoading ? (
             <Spinner />
@@ -99,5 +99,3 @@ const QuestionsPage: React.FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default QuestionsPage;

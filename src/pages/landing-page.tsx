@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const LandingPage: React.FC = (): JSX.Element => {
+export const LandingPage: React.FC = (): JSX.Element => {
   return (
     <div
       id="landing-main"
@@ -24,5 +24,3 @@ const LandingPage: React.FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default LandingPage;
