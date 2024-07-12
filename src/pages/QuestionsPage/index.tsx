@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Heading, OptionsBox, Question, Spinner } from '../../components';
 import { useData } from '../../hooks';
 import { removeNullAndFalseEntities } from '../../helpers';
 import { useQuizStore } from '../../store/quizStore';
 import forgeLogo from '../../assets/forge-logo.png';
+import { ErrorPage } from '../ErrorPage';
 
 export const QuestionsPage: React.FC = (): JSX.Element => {
   const {
@@ -32,7 +33,7 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
   }, [data, setQuestions]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorPage />;
   }
 
   const handleSelect = (option: string) => {
@@ -66,17 +67,17 @@ export const QuestionsPage: React.FC = (): JSX.Element => {
 
   return (
     <div id="question-main" className="bg-stoneGray-600 dark:bg-darkGray-200">
-      <header className="flex justify-end px-10 py-4">
+      <header className="flex 3xs:justify-center md:justify-end px-10 py-4">
         <Link reloadDocument to="/" className="z-10">
           <img src={forgeLogo} alt="forge logo" width={100} height={100} />
         </Link>
       </header>
-      <div className="flex items-center flex-col justify-center min-h-[calc(100vh-63.40px)] max-w-[67.5rem] pb-10 m-auto z-10">
+      <div className="flex items-center flex-col justify-center min-h-[calc(100vh-63.40px)] pb-10 m-auto z-10">
         {isLoading ? (
           <Spinner />
         ) : (
           <>
-            <div className="text-center z-10">
+            <div className="text-center 3xs:px-4 md:px-0 z-10">
               <Heading
                 currentCount={currentQuestion}
                 totalNo={questions.length}

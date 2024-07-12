@@ -1,12 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'media',
+  darkMode: '',
   content: ['./index.html', './src/**/*.tsx'],
   theme: {
     extend: {
+      screens: {
+        '3xs': '320px',
+        '2xs': '375px',
+        xs: '425px',
+      },
       fontSize: {
-        '10xl': '15rem',
-        '11xl': '18rem',
+        '10xl': '10rem',
+        '11xl': '12rem',
+        '12xl': '15rem',
+        '13xl': '18rem',
       },
       colors: {
         oceanBlue: {

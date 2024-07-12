@@ -8,7 +8,7 @@ export const Heading = ({
   totalNo,
 }: HeadingProps): JSX.Element => {
   return (
-    <h1 className="text-oceanBlue-700 dark:text-stoneGray-400 text-7xl font-normal uppercase ">
+    <h1 className="text-oceanBlue-700 dark:text-stoneGray-400 3xs:text-5xl md:text-7xl font-normal uppercase ">
       Question {currentCount + 1}/{totalNo}
     </h1>
   );

@@ -50,16 +50,14 @@ span {
     @include bg-position;
     background: url('./assets/landing-bg.png') no-repeat;
     background-size: calc(100% - 70px);
+    background-size: cover;
   }
 }
 
 #success-main,
 #error-main {
-  &.wrapper {
-    background: #4242e0;
-    &::before {
-      @include bg-position;
-      background: url('./assets/success-ai-bg.png') no-repeat;
-    }
+  &::before {
+    @include bg-position;
+    background: url('./assets/success-ai-bg.png') no-repeat;
   }
 }
